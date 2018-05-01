@@ -14,6 +14,10 @@ gulp.task( 'watch', function(){
         browSync.reload();
     });
 
+    watch( './app/assets/scripts/**/*.js', function(){
+        gulp.start('scriptsRefresh');
+    });
+
     watch( './app/assets/styles/**/*.css', function(){
         gulp.start( 'cssInject');
     });
@@ -22,4 +26,8 @@ gulp.task( 'watch', function(){
 gulp.task('cssInject', ['styles'], function(){
     return gulp.src('./app/temp/styles/styles.css')
     .pipe(browSync.stream());
+});
+
+gulp.task('scriptsRefresh',['scripts'], function(){
+    browSync.reload();
 });
