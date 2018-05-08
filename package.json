@@ -1,7 +1,7 @@
 {
   "name": "learningGit",
   "version": "1.0.0",
-  "scripts":{
+  "scripts": {
     "webpack": "webpack",
     "watch": "gulp watch"
   },
