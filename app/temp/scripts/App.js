@@ -11266,6 +11266,7 @@ var StickyHeader = function () {
     function StickyHeader() {
         _classCallCheck(this, StickyHeader);
 
+        this.lazyImages = (0, _jquery2.default)('.lazyload'); //used to fix broken waypoints break points when images aren't loaded to take up vertical space
         this.siteHeader = (0, _jquery2.default)('.site-header');
         this.headerTriggerElement = (0, _jquery2.default)('.large-hero__title');
         this.createHeaderWaypoint();
@@ -11273,9 +11274,17 @@ var StickyHeader = function () {
         this.headerLinks = (0, _jquery2.default)('.primary-nav a');
         this.createPageSectionWaypoints();
         this.addSmoothScrolling();
+        this.refreshWaypoints();
     }
 
     _createClass(StickyHeader, [{
+        key: 'refreshWaypoints',
+        value: function refreshWaypoints() {
+            this.lazyImages.on('load', function () {
+                Waypoint.refreshAll(); //waypoints is a global object so it will refresh everything. this means we don't need to do this in revealonscroll.js
+            });
+        }
+    }, {
         key: 'addSmoothScrolling',
         value: function addSmoothScrolling() {
             this.headerLinks.smoothScroll();

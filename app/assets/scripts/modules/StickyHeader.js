@@ -4,6 +4,7 @@ import smoothScroll from 'jquery-smooth-scroll';
 
 class StickyHeader{
     constructor(){
+        this.lazyImages = $('.lazyload');   //used to fix broken waypoints break points when images aren't loaded to take up vertical space
         this.siteHeader = $('.site-header');
         this.headerTriggerElement = $('.large-hero__title');
         this.createHeaderWaypoint();
@@ -11,6 +12,13 @@ class StickyHeader{
         this.headerLinks = $('.primary-nav a');
         this.createPageSectionWaypoints();
         this.addSmoothScrolling();
+        this.refreshWaypoints();
+    }
+
+    refreshWaypoints(){
+        this.lazyImages.on('load', function(){
+            Waypoint.refreshAll();      //waypoints is a global object so it will refresh everything. this means we don't need to do this in revealonscroll.js
+        });
     }
 
     addSmoothScrolling(){
