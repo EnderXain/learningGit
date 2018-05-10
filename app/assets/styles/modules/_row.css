@@ -2,7 +2,7 @@
     @mixin clearfix;
 
     &__b-margin-until-medium{
-        mrgin-bottom: 1rem;
+        margin-bottom: 1rem;
     }
 
     @mixin atMedium{
@@ -92,7 +92,7 @@
     }
 
     /*Begin equal height rules*/
-    &--equal-height-at-medium{
+    .flexbox &--equal-height-at-medium{
         @mixin atMedium{
             display: flex;
         }
@@ -103,7 +103,7 @@
         }
     }
 
-    &--equal-height-at-large{
+    .flexbox &--equal-height-at-large{
         @mixin atLarge{
             display: flex;
         }
